@@ -1,0 +1,78 @@
+Exercice 1 : 
+
+ALGORITHME CompterMotsEtVoyelles
+    VARIABLES
+        phrase: CHAÎNE DE CARACTÈRES
+        lg: ENTIER
+        motEnCours: BOOLÉEN
+        nbrMots: ENTIER
+        nbrVoyelles: ENTIER
+        caract: CARACTÈRE
+
+    DEBUT
+        nbrMots := 0
+        nbrVoyelles := 0
+        motEnCours := FAUX
+
+        ÉCRIRE "Entrez une phrase terminée par un point : "
+        LIRE phrase
+
+        POUR i DE 1 À LONGUEUR(phrase) FAIRE
+            caract := CARACTÈRE(i)
+
+            SI caract = '.' ALORS
+                SORTIR 
+            FIN SI
+
+            SI EST_VOWEL(caract) ALORS
+                nbrVoyelles := nbrVoyelles + 1
+            FIN SI
+
+            SI caract = ' ' ALORS
+                SI motEnCours ALORS
+                    nbrMots := nbrMots + 1
+                    motEnCours := FAUX
+                FIN SI
+            SINON
+                motEnCours := VRAI
+            FIN SI
+        FIN POUR
+
+        SI motEnCours ALORS
+            nbrMots := nbrMots + 1
+        FIN SI
+
+
+        ÉCRIRE "Nombre de mots dans la phrase : ", nbrMots
+        ÉCRIRE "Nombre de voyelles dans la phrase : ", nbrVoyelles
+    FIN
+
+Exercie 2 : 
+
+ALGORITHME SommeElementsDistincts
+    VARIABLES
+        ensemble1: TABLEAU D'ENTIERS
+        ensemble2: TABLEAU D'ENTIERS
+        tailleEnsemble1, tailleEnsemble2: ENTIER
+        somme: ENTIER
+
+    DEBUT
+        ensemble1 := [3, 1, 7, 9]
+        ensemble2 := [2, 4, 1, 9, 3]
+        somme := 0
+
+        POUR i DE 1 À LONGUEUR(ensemble1) FAIRE
+            SI NON_EST_PRESENT(ensemble1[i], ensemble2) ALORS
+                somme := somme + ensemble1[i]
+            FIN SI
+        FIN POUR
+
+        POUR j DE 1 À LONGUEUR(ensemble2) FAIRE
+            SI NON_EST_PRESENT(ensemble2[j], ensemble1) ALORS
+                somme := somme + ensemble2[j]
+            FIN SI
+        FIN POUR
+
+        // Affichage de la somme des éléments distincts
+        ÉCRIRE "La somme des éléments distincts est : ", somme
+    FIN
